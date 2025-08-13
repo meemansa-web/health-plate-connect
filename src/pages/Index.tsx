@@ -78,7 +78,7 @@ const Index = () => {
               <Button variant="outline" size="sm" onClick={() => window.location.href = '/orders'}>
                 Orders
               </Button>
-              <Button variant="outline" size="sm">
+              <Button variant="outline" size="sm" onClick={() => window.location.href = '/auth'}>
                 Sign In
               </Button>
             </div>
