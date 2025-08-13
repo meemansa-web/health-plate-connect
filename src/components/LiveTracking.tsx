@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
+import LocationTracker from "./LocationTracker";
 
 interface LiveTrackingProps {
   orderId: string;
@@ -19,6 +20,7 @@ interface OrderStatus {
     name: string;
     phone: string;
     rating: number;
+    vehicle?: string;
   };
   restaurant: {
     name: string;
@@ -41,7 +43,8 @@ export const LiveTracking = ({ orderId, onClose }: LiveTrackingProps) => {
     deliveryPartner: {
       name: 'Rajesh Kumar',
       phone: '+91 98765 43210',
-      rating: 4.8
+      rating: 4.8,
+      vehicle: 'Bike'
     },
     restaurant: {
       name: 'Green Bowl Cafe',
@@ -209,6 +212,23 @@ export const LiveTracking = ({ orderId, onClose }: LiveTrackingProps) => {
           </div>
         </CardContent>
       </Card>
+
+      {/* Live Location Tracking */}
+      <LocationTracker
+        orderId={orderId}
+        restaurantLocation={[77.5946, 12.9716]} // Bangalore coordinates
+        deliveryPartner={{
+          name: orderStatus.deliveryPartner.name,
+          phone: orderStatus.deliveryPartner.phone,
+          vehicle: orderStatus.deliveryPartner.vehicle || 'Bike',
+          rating: orderStatus.deliveryPartner.rating,
+          location: [77.5966, 12.9726] // Delivery partner coordinates
+        }}
+        onLocationUpdate={(location) => {
+          console.log('User location updated:', location);
+          // You can update order status with real location here
+        }}
+      />
 
       {/* Order Summary */}
       <Card>
