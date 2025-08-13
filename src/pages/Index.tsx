@@ -11,6 +11,8 @@ import restaurant3 from "@/assets/restaurant-3.jpg";
 import { RestaurantCard } from "@/components/RestaurantCard";
 import { SmartFilters } from "@/components/SmartFilters";
 import { GroupOrderButton } from "@/components/GroupOrderButton";
+import { CartButton } from "@/components/CartButton";
+import { LiveTrackingButton } from "@/components/LiveTrackingButton";
 
 const Index = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -72,8 +74,23 @@ const Index = () => {
                 <span>{location}</span>
               </div>
             </div>
+
+            {/* Search Bar - Hidden on mobile */}
+            <div className="hidden lg:flex flex-1 max-w-md mx-8">
+              <div className="relative w-full">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+                <Input
+                  placeholder="Search restaurants, cuisines..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="pl-10"
+                />
+              </div>
+            </div>
             
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2">
+              <LiveTrackingButton />
+              <CartButton />
               <GroupOrderButton />
               <Button variant="outline" size="sm" onClick={() => window.location.href = '/orders'}>
                 Orders
@@ -81,6 +98,19 @@ const Index = () => {
               <Button variant="outline" size="sm" onClick={() => window.location.href = '/auth'}>
                 Sign In
               </Button>
+            </div>
+          </div>
+
+          {/* Mobile Search Bar */}
+          <div className="lg:hidden mt-4">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Input
+                placeholder="Search restaurants, cuisines..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10"
+              />
             </div>
           </div>
         </div>
