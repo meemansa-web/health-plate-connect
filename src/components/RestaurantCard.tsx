@@ -108,7 +108,7 @@ export const RestaurantCard = ({ restaurant }: RestaurantCardProps) => {
           
           {/* Action Buttons */}
           <div className="flex space-x-2 pt-2">
-            <Button className="flex-1" size="sm">
+            <Button className="flex-1" size="sm" onClick={() => window.location.href = `/restaurant/${restaurant.id}`}>
               Order Now
             </Button>
             <Button variant="outline" size="sm" className="flex items-center space-x-1">

@@ -75,6 +75,9 @@ const Index = () => {
             
             <div className="flex items-center space-x-4">
               <GroupOrderButton />
+              <Button variant="outline" size="sm" onClick={() => window.location.href = '/orders'}>
+                Orders
+              </Button>
               <Button variant="outline" size="sm">
                 Sign In
               </Button>
